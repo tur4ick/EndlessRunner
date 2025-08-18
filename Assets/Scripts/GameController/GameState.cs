@@ -1,6 +1,9 @@
-public enum GameState
+namespace GameController
 {
-        Menu,
-        Playing,
-        GameOver
+        public enum GameState
+        {
+                Menu,
+                Playing,
+                GameOver
+        }
 }

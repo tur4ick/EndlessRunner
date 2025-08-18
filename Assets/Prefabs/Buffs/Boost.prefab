@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5429175057992842774}
   - component: {fileID: 2963424512474729626}
   - component: {fileID: 2378810637921129427}
-  - component: {fileID: 6713222738119878304}
+  - component: {fileID: 1300508950536982843}
   m_Layer: 0
   m_Name: Boost
   m_TagString: Untagged
@@ -106,7 +106,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &6713222738119878304
+--- !u!114 &1300508950536982843
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,8 +115,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2637096150112487542}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 981788d5c8cdd244fad31d92fe481b0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 87c52fdd8aff4679958bb5f8de024a71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boostAmount: 10
-  duration: 3
+  type: 0
+  amount: 2
+  duration: 5

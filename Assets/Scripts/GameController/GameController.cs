@@ -1,52 +1,70 @@
-using System;
-using Services;
+using Services.ChunkService;
+using Services.WindowService;
 using UnityEngine;
 using Zenject;
+using CharacterController = Character.CharacterController;
 
-public class GameController : MonoBehaviour
+namespace GameController
 {
-    [SerializeField] private GameObject _playerPrefab;
-    [SerializeField] private Vector3 _playerSpawnPoint = Vector3.zero;
-    [SerializeField] private Animator _animator;
-
-    private GameObject _playerInstance;
-    public GameState State { get; private set; } = GameState.Menu;
-
-    [Inject] private DiContainer _container;
-    [Inject] private ChunkService _chunkService;
-    [Inject] private WindowService _windowService;
-
-    private void Start()
+    public class GameController : MonoBehaviour
     {
-        _chunkService.StopRun();
-    }
-
-    public void OnStartButton()
-    {
-        if (State == GameState.Playing) return;
-        if (_playerInstance) Destroy(_playerInstance);
+        public GameState State { get; private set; } = GameState.Menu;
         
-        _playerInstance = _container.InstantiatePrefab(_playerPrefab, _playerSpawnPoint, Quaternion.identity, null);
+        [SerializeField] private GameObject _playerPrefab;
+        [SerializeField] private Vector3 _playerSpawnPoint = Vector3.zero;
         
-        _chunkService.StartRun();
-        State = GameState.Playing;
-    }
-
-    public void OnPlayerDead()
-    {
-        if (State != GameState.Playing) return;
+        [Inject] private DiContainer _container;
+        [Inject] private ChunkService _chunkService;
+        [Inject] private WindowService _windowService;
         
-        _windowService.Close(WindowType.InGameUI);
-        _windowService.Create<BaseWindow>(WindowType.RestartWindow);
-        _chunkService.StopRun();
-    }
+        private GameObject _playerInstance;
+        private CharacterController _controller;
+        
+        private void Start()
+        {
+            _chunkService.StopRun();
+        }
 
-    public void OnRestartButton()
-    {
-        if (_playerInstance) Destroy(_playerInstance);
-        _chunkService.StopRun();
-        _chunkService.ResetRun();
+        public void StartGame()
+        {
+            if (State == GameState.Playing) return;
+            if (_playerInstance) Destroy(_playerInstance);
+        
+            _playerInstance = _container.InstantiatePrefab(_playerPrefab, _playerSpawnPoint, Quaternion.identity, null);
+            _controller = _playerInstance.GetComponent<CharacterController>();
+            _controller.OnDead += StopGame;
+            
+            _chunkService.StartRun();
+            Debug.Log("GameStarted");
+            State = GameState.Playing;
+        }
 
-        State = GameState.Menu;
+        private void StopGame()
+        {
+            if (State != GameState.Playing) return;
+        
+            _windowService.Close(WindowType.InGameUI);
+            _windowService.Create<BaseWindow>(WindowType.RestartWindow);
+            _chunkService.StopRun();
+
+            State = GameState.GameOver;
+        }
+
+        public void Restart()
+        {
+            if (_playerInstance)
+            {
+                _controller.OnDead -= StopGame;
+                Destroy(_playerInstance);
+                _playerInstance = null;
+                _controller = null;
+            }
+            
+            _chunkService.StopRun();
+            _chunkService.ResetRun();
+
+            _windowService.Create<BaseWindow>(WindowType.MainMenu);
+            State = GameState.Menu;
+        }
     }
 }

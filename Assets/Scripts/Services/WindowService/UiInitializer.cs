@@ -1,7 +1,7 @@
 using UnityEngine;
 using Zenject;
 
-namespace Services
+namespace Services.WindowService
 {
     public class UiInitializer : MonoBehaviour
     {

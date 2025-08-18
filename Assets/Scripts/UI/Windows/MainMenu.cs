@@ -1,31 +1,29 @@
-using Services;
+using Services.CoinService;
+using Services.WindowService;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class MainMenu : BaseWindow
+namespace UI.Windows
 {
-    [SerializeField] private Button _starto;
+    public class MainMenu : BaseWindow
+    {
+        [SerializeField] private Button _startButton;
     
-    private WindowService _windowService;
-    private GameController _gameController;
+        [Inject] private WindowService _windowService;
+        [Inject] private GameController.GameController _gameController;
+        [Inject] private DistanceService _distanceService;
+    
+        private void Awake()
+        {
+            _startButton.onClick.AddListener(OnStart);
+        }
 
-    [Inject]
-    public void Construct(WindowService windowService, GameController gameController)
-    {
-        _windowService = windowService;
-        _gameController = gameController;
-    }
-
-    private void Awake()
-    {
-        _starto.onClick.AddListener(StartButton);
-    }
-
-    private void StartButton()
-    {
-        _windowService.Close(WindowType.MainMenu);
-        _windowService.Create<BaseWindow>(WindowType.InGameUI);
-        _gameController.OnStartButton();
+        private void OnStart()
+        {
+            _windowService.Close(WindowType.MainMenu);
+            _windowService.Create<BaseWindow>(WindowType.InGameUI);
+            _gameController.StartGame();
+        }
     }
 }

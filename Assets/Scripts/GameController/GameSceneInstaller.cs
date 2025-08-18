@@ -1,9 +1,12 @@
 using Zenject;
 
-public class GameSceneInstaller : MonoInstaller
+namespace GameController
 {
-    public override void InstallBindings()
+    public class GameSceneInstaller : MonoInstaller
     {
-        Container.Bind<GameController>().FromComponentInHierarchy().AsSingle();
+        public override void InstallBindings()
+        {
+            Container.Bind<GameController>().FromComponentInHierarchy().AsSingle();
+        }
     }
 }

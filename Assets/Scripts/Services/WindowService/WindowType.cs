@@ -1,4 +1,4 @@
-namespace Services
+namespace Services.WindowService
 {
     public enum WindowType
     {

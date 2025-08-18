@@ -1,20 +1,18 @@
-using System;
-using Services;
 using UnityEngine;
-using Zenject;
+using CharacterController = Character.CharacterController;
 
-public class Obstacle : MonoBehaviour
-{ 
-    [Inject] private GameController _gameController;
-    [Inject] private WindowService _windowService;
+namespace Obstacles
+{
+    public class Obstacle : MonoBehaviour
+    { 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        var player = other.GetComponent<CharacterController>();
-        if (player != null)
+        private void OnTriggerEnter(Collider other)
         {
-            player.Die();
-            _gameController.OnPlayerDead();
+            var player = other.GetComponent<CharacterController>();
+            if (player != null)
+            {
+                player.Die();
+            }
         }
     }
 }
