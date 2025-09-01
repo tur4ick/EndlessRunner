@@ -4,6 +4,7 @@ namespace Services.WindowService
     {
         MainMenu,
         InGameUI,
-        RestartWindow
+        RestartWindow,
+        Settings
     }
 }

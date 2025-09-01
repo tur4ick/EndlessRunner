@@ -3,6 +3,7 @@ using Services.WindowService;
 using UnityEngine;
 using Zenject;
 using CharacterController = Character.CharacterController;
+using Services.AudioService; 
 
 namespace GameController
 {
@@ -16,6 +17,7 @@ namespace GameController
         [Inject] private DiContainer _container;
         [Inject] private ChunkService _chunkService;
         [Inject] private WindowService _windowService;
+        [Inject] private AudioService _audio;
         
         private GameObject _playerInstance;
         private CharacterController _controller;
@@ -23,6 +25,7 @@ namespace GameController
         private void Start()
         {
             _chunkService.StopRun();
+            _audio.PlayMenuMusic(); 
         }
 
         public void StartGame()
@@ -30,6 +33,7 @@ namespace GameController
             if (State == GameState.Playing) return;
             if (_playerInstance) Destroy(_playerInstance);
         
+            _audio.PlayGameMusic();  
             _playerInstance = _container.InstantiatePrefab(_playerPrefab, _playerSpawnPoint, Quaternion.identity, null);
             _controller = _playerInstance.GetComponent<CharacterController>();
             _controller.OnDead += StopGame;
@@ -62,6 +66,7 @@ namespace GameController
             
             _chunkService.StopRun();
             _chunkService.ResetRun();
+            _audio.PlayMenuMusic();
 
             _windowService.Create<BaseWindow>(WindowType.MainMenu);
             State = GameState.Menu;

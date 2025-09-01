@@ -1,10 +1,13 @@
 using System;
+using Services.AudioService;
 using UnityEngine;
+using Zenject;
 
 namespace Character
 {
     public class CharacterController : MonoBehaviour
     {
+        [Inject] private AudioService _audio;
         public event Action OnDead;
         
         public CharacterStateMachine StateMachine { get; private set; }
@@ -34,6 +37,7 @@ namespace Character
         public void Die()
         {
             StateMachine.ChangeState(CharacterStateType.Dead);
+            _audio?.PlayDeath(); 
             OnDead?.Invoke();
         }
     

@@ -9,6 +9,7 @@ namespace UI.Windows
     public class MainMenu : BaseWindow
     {
         [SerializeField] private Button _startButton;
+        [SerializeField] private Button _settingsButton;
     
         [Inject] private WindowService _windowService;
         [Inject] private GameController.GameController _gameController;
@@ -17,6 +18,7 @@ namespace UI.Windows
         private void Awake()
         {
             _startButton.onClick.AddListener(OnStart);
+            _settingsButton.onClick.AddListener(OnSettingsButton);
         }
 
         private void OnStart()
@@ -24,6 +26,11 @@ namespace UI.Windows
             _windowService.Close(WindowType.MainMenu);
             _windowService.Create<BaseWindow>(WindowType.InGameUI);
             _gameController.StartGame();
+        }
+
+        private void OnSettingsButton()
+        {
+            _windowService.Create<BaseWindow>(WindowType.Settings);
         }
     }
 }
