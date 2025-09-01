@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Services
+namespace Services.WindowService
 {
     [CreateAssetMenu(menuName = "Configs/WindowPrefabMap")]
     public class WindowPrefabMap : ScriptableObject

@@ -1,16 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
-using Services.ChunkService;
+using Buffs;
 using UnityEngine;
 using Zenject;
 
-public class ChunkInstaller : MonoInstaller
+namespace Services.ChunkService
 {
-    [SerializeField] private ChunkPrefabMap _chunkPrefabMap;
-    [SerializeField] private Transform chunksRoot;
-
-    public override void InstallBindings()
+    public class ChunkInstaller : MonoInstaller
     {
-        Container.BindInterfacesAndSelfTo<ChunkService>().AsSingle().WithArguments(_chunkPrefabMap, chunksRoot);
+        [SerializeField] private ChunkPrefabMap _chunkPrefabMap;
+        [SerializeField] private Transform chunksRoot;
+
+        public override void InstallBindings()
+        {
+            Container.BindInterfacesAndSelfTo<ChunkService>().AsSingle().WithArguments(_chunkPrefabMap, chunksRoot);
+            Container.BindInterfacesAndSelfTo<BuffController>().AsSingle().NonLazy();
+        }
     }
 }

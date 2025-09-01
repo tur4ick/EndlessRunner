@@ -1,26 +1,39 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using Services;
+using Services.CoinService;
+using Services.WindowService;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
-public class InGameUI : BaseWindow
+namespace UI.Windows
 {
-    [SerializeField] private TextMeshProUGUI _coinText;
-
-    private CoinService _coinService;
-
-    [Inject]
-    public void Construct(CoinService coinService)
+    public class InGameUI : BaseWindow
     {
-        _coinService = coinService;
-    }
+        [SerializeField] private TextMeshProUGUI _coinText;
+        [SerializeField] private TextMeshProUGUI _distanceText;
 
-    private void Update()
-    {
-        _coinText.text = $"{_coinService.CoinCount}";
+        [Inject] private CoinService _coinService;
+        [Inject] private DistanceService _distanceService;
+
+        private void OnEnable()
+        {
+            _distanceService.OnDistanceChanged += UpdateDistanceLine;
+            UpdateDistanceLine(_distanceService.SessionDistance);
+        }
+        private void Update()
+        {
+            _coinText.text = $"{_coinService.CoinCount}";
+        }
+
+        private void OnDisable()
+        {
+            _distanceService.OnDistanceChanged -= UpdateDistanceLine;
+        }
+
+        private void UpdateDistanceLine(float x)
+        {
+            _distanceText.text = $"{(int)_distanceService.SessionDistance}/{(int)_distanceService.BestDistance}";
+        }
     }
 }

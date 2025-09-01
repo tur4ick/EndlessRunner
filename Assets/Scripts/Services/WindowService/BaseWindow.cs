@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Services
+namespace Services.WindowService
 {
     public abstract class BaseWindow : MonoBehaviour
     {

@@ -1,17 +1,23 @@
 using UnityEngine;
 using Zenject;
+using Services.AudioService;
 
-public class Coin : MonoBehaviour
+namespace Services.CoinService
 {
-    [Inject] private CoinService _coinService;
+    public class Coin : MonoBehaviour
+    {
+        [Inject] private CoinService _coinService;
+        [Inject] private AudioService.AudioService _audio;
     
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
+        private void OnTriggerEnter(Collider other)
         {
-            _coinService.AddCoin();
-            Destroy(gameObject);
+            if (other.CompareTag("Player"))
+            {
+                _coinService.AddCoin();
+                _audio.PlayCoin();
+                Destroy(gameObject);
+            }
         }
     }
 }

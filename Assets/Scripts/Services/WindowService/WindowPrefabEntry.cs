@@ -1,7 +1,6 @@
 using System;
-using UnityEngine;
 
-namespace Services
+namespace Services.WindowService
 {
     [Serializable]
     public class WindowPrefabEntry

@@ -1,32 +1,26 @@
-using System;
-using Services;
+using Services.WindowService;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-public class RestartWindow : BaseWindow
+namespace UI.Windows
 {
-    [SerializeField] private Button _restart;
+    public class RestartWindow : BaseWindow
+    {
+        [SerializeField] private Button _restartButton;
     
-    private WindowService _windowService;
-    private GameController _gameController;
-    
-    [Inject]
-    public void Construct(WindowService windowService, GameController gameController)
-    {
-        _windowService = windowService;
-        _gameController = gameController;
-    }
+        [Inject] private WindowService _windowService;
+        [Inject] private GameController.GameController _gameController;
 
-    private void Awake()
-    {
-        _restart.onClick.AddListener(Restart);
-    }
+        private void Awake()
+        {
+            _restartButton.onClick.AddListener(OnRestart);
+        }
 
-    private void Restart()
-    {
-        _windowService.Close(WindowType.RestartWindow);
-        _windowService.Create<BaseWindow>(WindowType.MainMenu);
-        _gameController.OnRestartButton();
+        private void OnRestart()
+        {
+            _windowService.Close(WindowType.RestartWindow);
+            _gameController.Restart();
+        }
     }
 }
