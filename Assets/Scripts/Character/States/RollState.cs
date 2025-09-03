@@ -12,8 +12,8 @@ namespace Character.States
         public override void OnEnter()
         {
             _startTime = Time.time;
-        
-            _animator.SetTrigger("Roll");
+            _controller.RaiseStateChanged(CharacterStateType.Roll);
+            _controller.RaiseRollStarted();
         }
 
         public override void Update()

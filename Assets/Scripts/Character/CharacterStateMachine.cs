@@ -9,9 +9,11 @@ namespace Character
         private readonly Dictionary<CharacterStateType, CharacterState> _states;
         private CharacterState _currentState;
         public CharacterStateType CurrentStateType { get; private set; }
+        private readonly CharacterController _controller;
 
         public CharacterStateMachine(CharacterController controller)
         {
+            _controller = controller;
             _states = new()
             {
                 { CharacterStateType.Idle, new IdleState(controller) },
@@ -26,7 +28,7 @@ namespace Character
             _currentState?.OnExit();
             _currentState = _states[type];
             CurrentStateType = type;
-            Debug.Log($"StateChanged to {type}");
+            _controller.RaiseStateChanged(type);
             _currentState.OnEnter();
         }
 

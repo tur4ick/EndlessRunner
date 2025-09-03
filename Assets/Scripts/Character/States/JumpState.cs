@@ -11,7 +11,8 @@ namespace Character.States
         public override void OnEnter()
         {
             if (!_controller.Parameters.IsGrounded) return;
-            _animator.SetTrigger("Jump");
+            _controller.RaiseStateChanged(CharacterStateType.Jump);
+            _controller.RaiseJumpStarted();
             float force = _controller.Config.JumpForce;
             _controller.Rigidbody.AddForce(Vector3.up * force, ForceMode.Impulse);
         }
