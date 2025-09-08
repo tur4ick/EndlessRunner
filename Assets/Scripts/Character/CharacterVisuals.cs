@@ -1,4 +1,3 @@
-using System;
 using Services.AudioService;
 using UnityEngine;
 using Zenject;
@@ -39,8 +38,6 @@ namespace Character
             if (_controller == null) return;
 
             _controller.OnStateChanged += OnStateChanged;
-            _controller.OnJumpStarted += OnJumpStarted;
-            _controller.OnRollStarted += OnRollStarted;
             _controller.OnDead += OnDied;
         }
 
@@ -49,8 +46,6 @@ namespace Character
             if (_controller == null) return;
 
             _controller.OnStateChanged += OnStateChanged;
-            _controller.OnJumpStarted -= OnJumpStarted;
-            _controller.OnRollStarted -= OnRollStarted;
             _controller.OnDead -= OnDied;
         }
 
@@ -61,18 +56,19 @@ namespace Character
             {
                 _animator.SetTrigger("Idle");
             }
+
+            if (next == CharacterStateType.Jump)
+            {
+                _animator.SetTrigger("Jump");
+            }
+
+            if (next == CharacterStateType.Roll)
+            {
+                _animator.SetTrigger("Roll");
+            }
         }
 
-        private void OnJumpStarted()
-        {
-            _animator.SetTrigger("Jump");
-        }
-
-
-        private void OnRollStarted()
-        {
-            _animator.SetTrigger("Roll");
-        }
+        
 
         
         private void OnDied()

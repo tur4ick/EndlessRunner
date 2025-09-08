@@ -44,20 +44,6 @@ namespace Character
             if (current != _lastState)
             {
                 RaiseStateChanged(current);
-
-                if (current == CharacterStateType.Jump)
-                {
-                    if (OnJumpStarted != null) OnJumpStarted();
-                }
-                else if (current == CharacterStateType.Roll)
-                {
-                    if (OnRollStarted != null) OnRollStarted();
-                }
-                if (current == CharacterStateType.Dead)
-                {
-                    if (OnDead != null) OnDead();
-                }
-
                 _lastState = current;
             }
             _wasGrounded = Parameters.IsGrounded;
