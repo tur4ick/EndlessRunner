@@ -10,6 +10,8 @@ namespace Services.GameDataService
             Container.BindInterfacesAndSelfTo<GameDataService>().AsSingle();
             Container.Bind<CoinService.CoinService>().AsSingle();
             Container.BindInterfacesAndSelfTo<DistanceService>().AsSingle();
+            Container.Bind<ModelPreviewService>().FromComponentInHierarchy().AsSingle();
+            Container.Bind<PlayerSkinsData>().FromComponentInHierarchy().AsSingle();
         }
     }
 }
