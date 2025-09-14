@@ -10,26 +10,34 @@ public class PriceCoinsViewTMP : MonoBehaviour
 
     private CoinService coinService;
     private int price;
+    private bool inited;
 
     public void Initialize(CoinService service, int targetPrice)
     {
+        if (inited && coinService != null)
+            coinService.OnCoinsChanged -= UpdateView;
+
         coinService = service;
         price = targetPrice;
-        coinService.OnCoinsChanged += UpdateView;
+
+        if (coinService != null)
+        {
+            coinService.OnCoinsChanged += UpdateView;
+            inited = true;
+        }
         UpdateView();
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
-        if (coinService != null) coinService.OnCoinsChanged -= UpdateView;
+        if (inited && coinService != null)
+            coinService.OnCoinsChanged -= UpdateView;
     }
 
     private void UpdateView()
     {
+        if (priceText == null) return;
         priceText.text = price.ToString();
-        if (coinService.CoinCount >= price)
-            priceText.color = affordableColor;
-        else
-            priceText.color = notAffordableColor;
+        priceText.color = (coinService != null && coinService.CoinCount >= price) ? affordableColor : notAffordableColor;
     }
 }
