@@ -15,5 +15,5 @@ MonoBehaviour:
   JumpForce: 350
   RollDuration: 1
   LaneDistance: 2.5
-  GroundOffset: 0.1
-  GroundCheckDistance: 0.1
+  GroundOffset: 1
+  GroundCheckDistance: 1.5

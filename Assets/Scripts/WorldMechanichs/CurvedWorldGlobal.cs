@@ -47,10 +47,4 @@ public class CurvedWorldGlobal : MonoBehaviour
         }
         Shader.SetGlobalFloat(CurveProp, value);
     }
-
-    public void SetCurve(float value)
-    {
-        curveStrength = value;
-        Apply();
-    }
 }

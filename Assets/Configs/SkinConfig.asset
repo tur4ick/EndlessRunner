@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f97048ed573b4468b481ace87879ab22, type: 3}
+  m_Name: SkinConfig
+  m_EditorClassIdentifier: 
+  MovementPrefab: {fileID: 5190853812263060157, guid: 374abddebbe13334ebb287e94cf678bb, type: 3}
+  VisualsPrefabs:
+  - {fileID: 261513185721321464, guid: 245440f9c265ba4409ce4623e4473fcf, type: 3}
+  - {fileID: 4894841382983390372, guid: 127c56e378c358046a5dd4fb07dba51b, type: 3}
+  SelectedIndex: 0
