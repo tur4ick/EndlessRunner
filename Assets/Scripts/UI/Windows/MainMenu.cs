@@ -10,6 +10,7 @@ namespace UI.Windows
     {
         [SerializeField] private Button _startButton;
         [SerializeField] private Button _settingsButton;
+        [SerializeField] private Button _shopButton;
     
         [Inject] private WindowService _windowService;
         [Inject] private GameController.GameController _gameController;
@@ -19,6 +20,7 @@ namespace UI.Windows
         {
             _startButton.onClick.AddListener(OnStart);
             _settingsButton.onClick.AddListener(OnSettingsButton);
+            _shopButton.onClick.AddListener(OnShopButon);
         }
 
         private void OnStart()
@@ -31,6 +33,11 @@ namespace UI.Windows
         private void OnSettingsButton()
         {
             _windowService.Create<BaseWindow>(WindowType.Settings);
+        }
+
+        private void OnShopButon()
+        {
+            _windowService.Create<BaseWindow>(WindowType.Shop);
         }
     }
 }

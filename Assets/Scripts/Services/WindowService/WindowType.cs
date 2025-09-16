@@ -5,6 +5,7 @@ namespace Services.WindowService
         MainMenu,
         InGameUI,
         RestartWindow,
-        Settings
+        Settings,
+        Shop
     }
 }
