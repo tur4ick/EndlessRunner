@@ -317,6 +317,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 118fd23910f34b13a050bc38d783e3ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _modelPreviewService: {fileID: 1764689464}
+  _skinsConfig: {fileID: 11400000, guid: c05efa2e317d8b84c8e103b6db5400b6, type: 2}
 --- !u!114 &145930648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -660,8 +662,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4a8850e020d480ca2ff3d8bd8d422f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _skinsConfig: {fileID: 11400000, guid: 0d0b481b4da484b4991a1c5f164acb7b, type: 2}
   _playerSpawnPoint: {x: 0, y: 0, z: 0}
+  _characterMovement: {fileID: 7942795908875067234, guid: 374abddebbe13334ebb287e94cf678bb, type: 3}
 --- !u!4 &947079142
 Transform:
   m_ObjectHideFlags: 0
@@ -769,53 +771,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 31.74, y: 0, z: 0}
---- !u!1 &1036133510
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1036133512}
-  - component: {fileID: 1036133511}
-  m_Layer: 0
-  m_Name: PlayerSkinsData
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1036133511
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036133510}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4408a720939a3984db17480a50d5eec5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  selectedSkinId: 0
-  owned:
-  - 0
---- !u!4 &1036133512
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1036133510}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 61.534164, y: -0.26250362, z: -54.507595}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1122096502
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,8 +1038,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 222ed4498ee4fec4f84002b3d02f342d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  previewCamera: {fileID: 853058803}
-  previewAnchor: {fileID: 1557636058}
+  _previewCamera: {fileID: 853058803}
+  _previewAnchor: {fileID: 1557636058}
 --- !u!4 &1764689465
 Transform:
   m_ObjectHideFlags: 0
@@ -1116,4 +1071,3 @@ SceneRoots:
   - {fileID: 582551416}
   - {fileID: 392261758}
   - {fileID: 1764689465}
-  - {fileID: 1036133512}

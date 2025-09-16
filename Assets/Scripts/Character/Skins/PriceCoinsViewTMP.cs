@@ -1,43 +1,42 @@
+using System;
 using Services.CoinService;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
+using Zenject;
 
-public class PriceCoinsViewTMP : MonoBehaviour
+namespace Character.Skins
 {
-    [SerializeField] private TextMeshProUGUI priceText;
-    [SerializeField] private Color affordableColor = Color.white;
-    [SerializeField] private Color notAffordableColor = Color.red;
-
-    private CoinService coinService;
-    private int price;
-    private bool inited;
-
-    public void Initialize(CoinService service, int targetPrice)
+    public class PriceCoinsViewTMP : MonoBehaviour
     {
-        if (inited && coinService != null)
-            coinService.OnCoinsChanged -= UpdateView;
+        [SerializeField] private TextMeshProUGUI _priceText;
+        [SerializeField] private Color _affordableColor = Color.white;
+        [SerializeField] private Color _notAffordableColor = Color.red;
 
-        coinService = service;
-        price = targetPrice;
-
-        if (coinService != null)
+        [Inject] private CoinService _coinService;
+        private int _price;
+        
+        private void Start()
         {
-            coinService.OnCoinsChanged += UpdateView;
-            inited = true;
+            _coinService.OnCoinsChanged += UpdateView;
         }
-        UpdateView();
-    }
 
-    private void OnDestroy()
-    {
-        if (inited && coinService != null)
-            coinService.OnCoinsChanged -= UpdateView;
-    }
+        public void Initialize(int targetPrice)
+        {
+            _price = targetPrice;
+            UpdateView();
+        }
 
-    private void UpdateView()
-    {
-        if (priceText == null) return;
-        priceText.text = price.ToString();
-        priceText.color = (coinService != null && coinService.CoinCount >= price) ? affordableColor : notAffordableColor;
+        private void OnDestroy()
+        {
+            _coinService.OnCoinsChanged -= UpdateView;
+        }
+
+        private void UpdateView()
+        {
+            if (_priceText == null) return;
+            _priceText.text = _price.ToString();
+            _priceText.color = (_coinService != null && _coinService.CoinCount >= _price) ? _affordableColor : _notAffordableColor;
+        }
     }
 }

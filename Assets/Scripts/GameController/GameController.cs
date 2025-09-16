@@ -1,10 +1,12 @@
 using Character;
+using Character.Skins;
 using Services.ChunkService;
 using Services.WindowService;
 using UnityEngine;
 using Zenject;
 using CharacterController = Character.CharacterController;
-using Services.AudioService; 
+using Services.AudioService;
+using Services.GameDataService;
 
 namespace GameController
 {
@@ -12,13 +14,16 @@ namespace GameController
     {
         public GameState State { get; private set; } = GameState.Menu;
         
-        [SerializeField] private PlayerSkinsConfig _skinsConfig;
         [SerializeField] private Vector3 _playerSpawnPoint = Vector3.zero;
+        [SerializeField] private CharacterMovement _characterMovement;
         
         [Inject] private DiContainer _container;
         [Inject] private ChunkService _chunkService;
         [Inject] private WindowService _windowService;
         [Inject] private AudioService _audio;
+        [Inject] private SkinsConfig _skinsConfig;
+        [Inject] private GameDataService _gameDataService;
+
         
         private GameObject _movementInstance;
         private GameObject _visualsInstance;
@@ -34,13 +39,13 @@ namespace GameController
         public void StartGame()
         {
             if (State == GameState.Playing) return;
-            
-            GameObject visualsPrefab = _skinsConfig.GetSelectedVisuals();
+
+            var visualsPrefab = _skinsConfig.GetSkinById(_gameDataService.Data.SelectedSkinId).visualsPrefab;
             
             
             CleanupPlayer();
 
-            _movementInstance = _container.InstantiatePrefab(_skinsConfig.MovementPrefab, _playerSpawnPoint,
+            _movementInstance = _container.InstantiatePrefab(_characterMovement, _playerSpawnPoint,
                 Quaternion.identity, null);
             
             _controller = _movementInstance.GetComponent<CharacterController>();

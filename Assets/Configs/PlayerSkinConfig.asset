@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f97048ed573b4468b481ace87879ab22, type: 3}
-  m_Name: SkinConfig
+  m_Name: PlayerSkinConfig
   m_EditorClassIdentifier: 
   MovementPrefab: {fileID: 5190853812263060157, guid: 374abddebbe13334ebb287e94cf678bb, type: 3}
   VisualsPrefabs:

@@ -1,50 +1,43 @@
+using Character;
 using UnityEngine;
 
-public class ModelPreviewService : MonoBehaviour
+namespace Services.ModelPreviewService
 {
-    [SerializeField] private Camera previewCamera;
-    [SerializeField] private Transform previewAnchor;
-
-    private GameObject currentInstance;
-
-    void Start()
+    public class ModelPreviewService : MonoBehaviour
     {
-        previewCamera.enabled = false;
-    }
+        [SerializeField] private Camera _previewCamera;
+        [SerializeField] private Transform _previewAnchor;
 
-    public void Despawn()
-    {
-        if (currentInstance != null)
+        private CharacterVisuals _currentInstance;
+
+        void Start()
         {
-            Destroy(currentInstance);
-            currentInstance = null;
-        }
-        previewCamera.enabled = false;
-    }
-
-    public void Spawn(GameObject prefab)
-    {
-        Despawn();
-
-        if (prefab == null)
-            return;
-
-        currentInstance = Instantiate(prefab, previewAnchor);
-        Transform t = currentInstance.transform;
-        t.localPosition = Vector3.zero;
-        t.localRotation = Quaternion.identity;
-        t.localScale = Vector3.one;
-
-        Animator[] animators = currentInstance.GetComponentsInChildren<Animator>(true);
-        int i = 0;
-        while (i < animators.Length)
-        {
-            animators[i].applyRootMotion = false;
-            animators[i].Rebind();
-            animators[i].Update(0f);
-            i = i + 1;
+            _previewCamera.enabled = false;
         }
 
-        previewCamera.enabled = true;
+        public void Despawn()
+        {
+            if (_currentInstance != null)
+            {
+                Destroy(_currentInstance.gameObject);
+                _currentInstance = null;
+            }
+            _previewCamera.enabled = false;
+        }
+
+        public void Spawn(CharacterVisuals prefab)
+        {
+            Despawn();
+
+            if (prefab == null)
+                return;
+
+            _currentInstance = Instantiate(prefab, _previewAnchor);
+            Transform t = _currentInstance.transform;
+            t.localPosition = Vector3.zero;
+            t.localRotation = Quaternion.identity;
+        
+            _previewCamera.enabled = true;
+        }
     }
 }
