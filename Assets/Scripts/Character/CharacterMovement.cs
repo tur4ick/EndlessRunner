@@ -25,11 +25,12 @@ namespace Character
         {
             if (_controller.Parameters.IsChangingLine) return;
 
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            var input = _controller.Input;
+            if (input.Left)
             {
                 QueueLaneChange(-1);
             }
-            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            else if (input.Right)
             {
                 QueueLaneChange(1);
             }

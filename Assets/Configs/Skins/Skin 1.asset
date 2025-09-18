@@ -15,4 +15,4 @@ MonoBehaviour:
   id: 1
   displayName: Bomzhara
   price: 200
-  visualsPrefab: {fileID: 4894841382983390372, guid: 127c56e378c358046a5dd4fb07dba51b, type: 3}
+  visualsPrefab: {fileID: 7214157038305681642, guid: 127c56e378c358046a5dd4fb07dba51b, type: 3}

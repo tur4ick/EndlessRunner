@@ -9,6 +9,7 @@ namespace Services.GameDataService
     {
         [SerializeField] private ModelPreviewService.ModelPreviewService _modelPreviewService;
         [SerializeField] private SkinsConfig _skinsConfig;
+        [SerializeField] private InputSource _inputSource;
         
         public override void InstallBindings()
         {
@@ -17,6 +18,7 @@ namespace Services.GameDataService
             Container.BindInterfacesAndSelfTo<DistanceService>().AsSingle();
             Container.Bind<ModelPreviewService.ModelPreviewService>().FromComponentOn(_modelPreviewService.gameObject).AsSingle();
             Container.Bind<SkinsConfig>().FromInstance(_skinsConfig).AsSingle();
+            Container.Bind<InputSource>().FromInstance(_inputSource).AsSingle();
         }
     }
 }
