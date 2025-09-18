@@ -15,4 +15,4 @@ MonoBehaviour:
   id: 0
   displayName: KvadratniyChelik
   price: 200
-  visualsPrefab: {fileID: 261513185721321464, guid: 245440f9c265ba4409ce4623e4473fcf, type: 3}
+  visualsPrefab: {fileID: 471647203781655770, guid: 245440f9c265ba4409ce4623e4473fcf, type: 3}

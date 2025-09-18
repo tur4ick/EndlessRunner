@@ -9,6 +9,7 @@ namespace Character
     {
         
         [Inject] private AudioService _audio;
+        [Inject] private InputSource _input;
 
         public event Action OnDead;
         public event Action<CharacterStateType, CharacterStateType> OnStateChanged;
@@ -23,6 +24,8 @@ namespace Character
         
         private CharacterStateType _lastState;
         private bool _wasGrounded;
+        
+        public InputSource Input => _input;
 
     
         private void Start()

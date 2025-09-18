@@ -16,13 +16,14 @@ namespace Character.States
         public override void Update()
         {
             _controller.Movement.Move();
+            var input = _controller.Input;
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (input.Up)
             {
                 if (_controller.Parameters.IsGrounded)
                     _controller.StateMachine.ChangeState(CharacterStateType.Jump);
             }
-            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            else if (input.Down)
             {
                 if (!_controller.Parameters.IsChangingLine)
                     _controller.StateMachine.ChangeState(CharacterStateType.Roll);

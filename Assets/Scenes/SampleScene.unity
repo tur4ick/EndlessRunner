@@ -319,6 +319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _modelPreviewService: {fileID: 1764689464}
   _skinsConfig: {fileID: 11400000, guid: c05efa2e317d8b84c8e103b6db5400b6, type: 2}
+  _inputSource: {fileID: 1211790451}
 --- !u!114 &145930648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -877,6 +878,65 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1211790450
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1211790452}
+  - component: {fileID: 1211790451}
+  - component: {fileID: 1211790453}
+  m_Layer: 0
+  m_Name: InputSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1211790451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211790450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a392567d0ff41d449b052ef93ab2efb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _swipeDetection: {fileID: 1211790453}
+--- !u!4 &1211790452
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211790450}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 61.534164, y: -0.26250362, z: -54.507595}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1211790453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211790450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f7ffda542b8a17a40aa954b217a197a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _isMobile: 1
 --- !u!1 &1557636057
 GameObject:
   m_ObjectHideFlags: 0
@@ -1071,3 +1131,4 @@ SceneRoots:
   - {fileID: 582551416}
   - {fileID: 392261758}
   - {fileID: 1764689465}
+  - {fileID: 1211790452}

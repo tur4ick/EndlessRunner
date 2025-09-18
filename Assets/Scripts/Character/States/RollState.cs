@@ -18,7 +18,9 @@ namespace Character.States
 
         public override void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            var input = _controller.Input;
+            
+            if (input.Up)
             {
                 _controller.StateMachine.ChangeState(CharacterStateType.Jump);
                 return;
